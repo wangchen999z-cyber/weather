@@ -38,7 +38,7 @@ df_t.columns = ["日期", "天气", "最高温(°C)", "最低温(°C)", "降水�
 # 设置索引为日期
 df_b.set_index("日期", inplace=True)
 
-url2 = "https://open.feishu.cn/open-apis/bot/v2/hook/a095e47f-59f5-493b-a6d8-6394f1b5409b"
+url2 = "https://open.feishu.cn/open-apis/bot/v2/hook/a25fe5c1-854e-4dd4-915d-80d3d497826d"
 
 
 
