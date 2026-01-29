@@ -3,8 +3,8 @@ name: Weather Push  # 这是工作流的名字
 # 定义触发条件
 on:
   schedule:
-    # 使用 cron 表达式每天 08:00 执行
-    - cron: "0 1 * * *"  # 每天 09:00 运行
+    # 换算逻辑：UTC 2点 → 北京时间 2+8=10点（精准10:00执行）
+    - cron: "0 2 * * *"  # 注释明确对应北京时间，避免混淆
   workflow_dispatch:  # 允许手动触发
 
 # 定义工作流的任务
@@ -14,13 +14,13 @@ jobs:
     runs-on: ubuntu-latest  # 选择最新的 Ubuntu 操作系统环境
 
     steps:
-      # 第一步：检出仓库中的代码
+      # 第一步：检出仓库中的代码（升级到v4最新版，v2已过时）
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      # 第二步：设置 Python 环境
+      # 第二步：设置 Python 环境（升级到v5最新版，v2已过时）
       - name: Setup Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: '3.9'  # 设置 Python 版本
 
@@ -30,7 +30,6 @@ jobs:
           python -m pip install --upgrade pip  # 升级 pip
           pip install requests  # 安装所需的依赖（如 requests）
           pip install pandas
-          
 
       # 第四步：运行 Python 脚本
       - name: Run script
